@@ -37,12 +37,15 @@ jobs:
           command: |
             echo "Deploying to EC2..."
             scp -o StrictHostKeyChecking=no -r * ubuntu@$EC2_HOST:/var/www/html/
-            ssh -o StrictHostKeyChecking=no ubuntu@$EC2_HOST << 'EOF'
-              cd /var/www/html
-              npm install
-              pm2 restart app.js  # Replace 'app.js' with your entry file
-              exit
-            EOF
+            - run:
+    name: Deploy to AWS EC2
+    command: |
+      ssh -o StrictHostKeyChecking=no ubuntu@$EC2_HOST "bash -c '
+        cd /var/www/html
+        npm install
+        pm2 restart app.js
+      '"
+
 
 workflows:
   version: 2

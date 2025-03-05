@@ -43,7 +43,7 @@ jobs:
             ssh -o StrictHostKeyChecking=no ubuntu@$EC2_HOST "bash -c '
               cd /var/www/html/
               npm install
-              pm2 restart app.js || pm2 start app.js --name node-app
+              pm2 restart App.js || pm2 start App.js --name node-app
             '"
 
 workflows:

@@ -37,11 +37,11 @@ jobs:
             echo "Deploying to EC2..."
             
             # Copy project files to EC2 instance
-            scp -o StrictHostKeyChecking=no -r * ubuntu@$EC2_HOST:/var/www/html/
+            scp -o StrictHostKeyChecking=no -r * ubuntu@$EC2_HOST:/var/www/html/src
 
             # SSH into EC2 and configure the application
             ssh -o StrictHostKeyChecking=no ubuntu@$EC2_HOST "bash -c '
-              cd /var/www/html
+              cd /var/www/html/src
               npm install
               pm2 restart app.js || pm2 start app.js --name node-app
             '"

@@ -16,8 +16,7 @@ jobs:
       - run:
           name: Run Linting (ESLint)
           command: |
-            npm install -g eslint
-            eslint . || echo "Linting issues detected, but continuing..."
+            npx eslint . || echo "Linting issues detected, but continuing..."
       - run:
           name: Run Tests (Skip if not available)
           command: npm test || echo "No tests found, skipping..."
